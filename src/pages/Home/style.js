@@ -6,13 +6,13 @@ export const HomeWrapper = styled.div`
   width: 80vw;
   padding: 0 ;
   margin: 0 auto;
-  height:350px;
+  height:30vw;
   background: pink;
 `;
 
 export const HeaderWrapper = styled.div`
   width:80vw;
-  height:124px;
+  height:10vw;
   background:url(${head}) no-repeat ;
   background-size:100%
 
@@ -21,7 +21,7 @@ export const HeaderWrapper = styled.div`
 export const Admin = styled.div`
  display:flex;
  position:fixed;
- top:17%;
+ top:8vw;
  left:70vw;
  div{
    font-size:10px;
@@ -31,8 +31,8 @@ export const Admin = styled.div`
 export const Tab = styled.div`
 display:flex;
 position:fixed;
-top:28%;
-left:12%;
+top:12vw;
+left:10vw;
 div{
   border:1px solid black;
   font-size:12px;
