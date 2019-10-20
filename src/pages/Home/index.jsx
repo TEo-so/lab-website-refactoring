@@ -1,24 +1,30 @@
 import React, { Component } from "react";
-import { HomeWrapper, HeaderWrapper, Admin, Tab } from "./style";
+import { HomeWrapper, HeaderWrapper } from "./style";
+import Admin from "../../components/Admin.jsx";
+import SuperAdmin from "../SuperAdmin/index";
+import Tab from "../../components/Tab";
+
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 class Home extends Component {
   render() {
     return (
-      <HomeWrapper>
-        <HeaderWrapper />
-        <Admin>
-          <div>身份：游客</div>
-          <div>登陆</div>
-          <div>注册</div>
-          <div>使用手册</div>
-        </Admin>
-        <Tab>
-          <div>实验室首页</div>
-          <div>上机任务</div>
-          <div>学习资料</div>
-          <div>软件下载</div>
-        </Tab>
-      </HomeWrapper>
+      <Router>
+        <HomeWrapper className="HomeWrapper">
+          <HeaderWrapper>
+            <Admin className="Admin" />
+          </HeaderWrapper>
+
+          <Switch>
+            <Route path="/home">
+              <Tab />
+            </Route>
+            <Route path="/superAdmin">
+              <SuperAdmin />
+            </Route>
+          </Switch>
+        </HomeWrapper>
+      </Router>
     );
   }
 }
