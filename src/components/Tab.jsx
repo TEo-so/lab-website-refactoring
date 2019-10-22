@@ -3,7 +3,7 @@ import { Menu } from "antd";
 import "./style/menuOverwrite.less";
 import styled from "styled-components";
 
-import Band from "./Band";
+import Band from "./band/Band";
 import Mission from "../pages/mission/index";
 import Software from "../pages/software/index";
 import Resource from "../pages/resource/index";

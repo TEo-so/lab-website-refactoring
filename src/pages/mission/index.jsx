@@ -2,8 +2,14 @@ import React, { Component, Fragment } from "react";
 import { Table } from "antd";
 import Search from "../../components/Search";
 import "./table.less";
+import { connect } from "react-redux";
+import { actionCreators } from "./store"; //store 里有出口文件 已经导出
 
 class Mission extends Component {
+  componentDidMount() {
+    this.props.handleMission();
+  }
+
   render() {
     const expandedRowRender = () => {
       const columns = [
@@ -42,18 +48,7 @@ class Mission extends Component {
       { title: "发布时间", dataIndex: "createdAt", key: "createdAt" }
     ];
 
-    const data = [];
-    for (let i = 0; i < 3; ++i) {
-      data.push({
-        key: i,
-        name: "数据库系统应用",
-        number: "A1111111",
-        comment: "教学班备注",
-        semester: "大一上",
-        teacher: "袁浩",
-        createdAt: "2014-12-24 "
-      });
-    }
+    const data = this.props.mission;
 
     return (
       <Fragment>
@@ -71,4 +66,21 @@ class Mission extends Component {
   }
 }
 
-export default Mission;
+const mapStateToProps = state => {
+  return {
+    mission: state.mission.get("result")
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleMission() {
+      dispatch(actionCreators.getMissionApi());
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Mission);

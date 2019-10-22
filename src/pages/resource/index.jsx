@@ -1,8 +1,13 @@
-import React, { Component } from "react";
-// import Search from "../../components/Search";
+import React, { Component, Fragment } from "react";
+import Search from "../../components/Search";
 import { Table } from "antd";
+import { connect } from "react-redux";
+import { actionCreators } from "./store"; //store 里有出口文件 已经导出
 
 class Resource extends Component {
+  componentDidMount() {
+    this.props.handleResource();
+  }
   render() {
     const columns = [
       {
@@ -33,42 +38,37 @@ class Resource extends Component {
       }
     ];
 
-    const data = [
-      {
-        key: "1",
-        name: "John Brown",
-        size: 32,
-        publisher: "袁浩",
-        createdAt: "2019-04-03",
-        load: "下载资料"
-      },
-      {
-        key: "1",
-        name: "John Brown",
-        size: 32,
-        publisher: "袁浩",
-        createdAt: "2019-04-03",
-        load: "下载资料"
-      },
-      {
-        key: "1",
-        name: "John Brown",
-        size: 32,
-        publisher: "袁浩",
-        createdAt: "2019-04-03",
-        load: "下载资料"
-      }
-    ];
+    const data = this.props.resource;
 
     return (
-      <Table
-        pagination={false}
-        size="small"
-        columns={columns}
-        dataSource={data}
-      ></Table>
+      <Fragment>
+        <Search />
+        <Table
+          pagination={false}
+          size="small"
+          columns={columns}
+          dataSource={data}
+        ></Table>
+      </Fragment>
     );
   }
 }
 
-export default Resource;
+const mapStateToProps = state => {
+  return {
+    resource: state.resource.get("result")
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleResource() {
+      dispatch(actionCreators.getResourceApi());
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Resource);

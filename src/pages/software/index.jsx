@@ -1,8 +1,13 @@
-import React, { Component } from "react";
-// import Search from "../../components/Search";
+import React, { Component, Fragment } from "react";
+import Search from "../../components/Search";
 import { Table } from "antd";
+import { connect } from "react-redux";
+import { actionCreators } from "./store"; //store 里有出口文件 已经导出
 
 class Software extends Component {
+  componentDidMount() {
+    this.props.handleSoftware();
+  }
   render() {
     const columns = [
       {
@@ -33,42 +38,37 @@ class Software extends Component {
       }
     ];
 
-    const data = [
-      {
-        key: "1",
-        name: "John Brown",
-        size: 32,
-        publisher: "袁浩",
-        createdAt: "2019-04-03",
-        load: "下载资料"
-      },
-      {
-        key: "1",
-        name: "John Brown",
-        size: 32,
-        publisher: "袁浩",
-        createdAt: "2019-04-03",
-        load: "下载资料"
-      },
-      {
-        key: "1",
-        name: "John Brown",
-        size: 32,
-        publisher: "袁浩",
-        createdAt: "2019-04-03",
-        load: "下载资料"
-      }
-    ];
+    const data = this.props.software;
 
     return (
-      <Table
-        pagination={false}
-        size="small"
-        columns={columns}
-        dataSource={data}
-      ></Table>
+      <Fragment>
+        <Search />
+        <Table
+          pagination={false}
+          size="small"
+          columns={columns}
+          dataSource={data}
+        ></Table>
+      </Fragment>
     );
   }
 }
 
-export default Software;
+const mapStateToProps = state => {
+  return {
+    software: state.software.get("result")
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleSoftware() {
+      dispatch(actionCreators.getSoftwareApi());
+    }
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Software);
