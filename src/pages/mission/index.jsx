@@ -48,7 +48,7 @@ class Mission extends Component {
       { title: "发布时间", dataIndex: "createdAt", key: "createdAt" }
     ];
 
-    const data = this.props.mission;
+    const data = [...this.props.mission];
 
     return (
       <Fragment>

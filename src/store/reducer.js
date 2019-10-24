@@ -5,6 +5,7 @@ import { reducer as bandReducer } from "../components/band/store";
 import { reducer as missionReducer } from "../pages/mission/store"
 import { reducer as resourceReducer } from '../pages/resource/store'
 import { reducer as softwareReducer } from '../pages/software/store'
+import { reducer as AdminReducer } from "../components/Admin/store"
 
 
 const reducer = combineReducers({
@@ -12,7 +13,8 @@ const reducer = combineReducers({
     band: bandReducer,
     mission: missionReducer,
     software: softwareReducer,
-    resource: resourceReducer
+    resource: resourceReducer,
+    admin: AdminReducer
 
 });
 export default reducer;

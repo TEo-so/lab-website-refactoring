@@ -8,7 +8,6 @@ const getResource = (result) => ({
 
 export const getResourceApi = () => {
     return dispatch => {
-        console.log('调用接口')
         axios
             .get(`/api/resource.json`)
             .then(res => {

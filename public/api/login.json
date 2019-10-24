@@ -1,0 +1,19 @@
+{
+    "error_code": 0,
+    "massage": "success",
+    "data": {
+        "id": "1",
+        "userId": "2018210234",
+        "userName": "张三",
+        "academy": "现代邮政学院",
+        "grade": "2018",
+        "discipline": "物理管理",
+        "cls": "03131801",
+        "sex": "男",
+        "phone": "10086",
+        "type": "student",
+        "teacherId": ["lujl", "liuyj"],
+        "state": "yes",
+        "registerDate": "2019-10-16"
+    }
+}

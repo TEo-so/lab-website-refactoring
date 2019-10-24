@@ -7,7 +7,9 @@ const defaultState = fromJS({
 });
 
 export default (state = defaultState, action) => {
+
     if (action.type === GET_BAND) {
+
         return state.merge({
             result: action.result
         });

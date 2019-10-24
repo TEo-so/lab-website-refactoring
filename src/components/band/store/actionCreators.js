@@ -1,5 +1,4 @@
 import axios from "axios";
-// import { fromJS } from "immutable";
 import { GET_BAND } from "./actionTypes";
 
 const getBand = (result) => ({

@@ -38,7 +38,7 @@ class Software extends Component {
       }
     ];
 
-    const data = this.props.software;
+    const data = [...this.props.software];
 
     return (
       <Fragment>

@@ -38,7 +38,7 @@ class Resource extends Component {
       }
     ];
 
-    const data = this.props.resource;
+    const data = [...this.props.resource];
 
     return (
       <Fragment>
