@@ -42,7 +42,7 @@ class Resource extends Component {
 
     return (
       <Fragment>
-        <Search />
+        <Search option1={"资料名称"} option2={"上传人"} />
         <Table
           pagination={false}
           size="small"

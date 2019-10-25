@@ -42,7 +42,7 @@ class Software extends Component {
 
     return (
       <Fragment>
-        <Search />
+        <Search option1={"软件名称"} option2={"上传人"} />
         <Table
           pagination={false}
           size="small"

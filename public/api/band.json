@@ -1,11 +1,22 @@
-[{
-        "key": "1",
-        "name": "实验室注意事项",
-        "createdAt": "2019-04-09"
-    },
-    {
-        "key": "2",
-        "name": "实验室使用方法",
-        "createdAt": "2019-04-09"
+{
+    "error_code": 0,
+    "message": "success",
+    "data": {
+        "total": 2,
+        "items": [{
+            "key": 1,
+            "id": 21,
+            "title": "企业经营管理综合仿真实习课事项",
+            "content": "请使用googel浏览器登录",
+            "userName": "超级管理员",
+            "addTime": "2017-01-03"
+        }, {
+            "key": 2,
+            "id": 5,
+            "title": "实验注意事项",
+            "content": "用火狐浏览器Mozilla Firefox访问实验中心主页172.22.4.2",
+            "userName": "超级管理员",
+            "addTime": "2014-10-06"
+        }]
     }
-]
+}

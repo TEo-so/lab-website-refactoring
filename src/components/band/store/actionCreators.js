@@ -12,7 +12,7 @@ export const getBandApi = () => {
         axios
             .get(`/api/band.json`)
             .then(res => {
-                const result = res.data;
+                const result = res.data.data.items;
                 dispatch(getBand(result));
 
             })

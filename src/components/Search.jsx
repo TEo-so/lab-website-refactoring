@@ -1,22 +1,29 @@
-import React from "react";
+import React, { Component } from "react";
 import { Input, Select } from "antd";
 
 const { Option } = Select;
 const { Search } = Input;
-const SearchBox = () => {
-  const selectBefore = (
-    <Select defaultValue="教师姓名" style={{ width: 100 }}>
-      <Option value="教师姓名">教师姓名</Option>
-      <Option value="课程号">课程号</Option>
-    </Select>
-  );
-  return (
-    <div>
-      <div style={{ marginBottom: 8 }}>
-        <Search addonBefore={selectBefore} style={{ width: 300 }} />
+
+class SearchBox extends Component {
+  render() {
+    const selectBefore = (arg1, arg2) => (
+      <Select defaultValue={arg1} style={{ width: 100 }}>
+        <Option value={arg1}>{arg1}</Option>
+        <Option value={arg2}>{arg2}</Option>
+      </Select>
+    );
+
+    return (
+      <div>
+        <div style={{ marginBottom: 8 }}>
+          <Search
+            addonBefore={selectBefore(this.props.option1, this.props.option2)}
+            style={{ width: 300 }}
+          />
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default SearchBox;

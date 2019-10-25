@@ -14,13 +14,13 @@ class Band extends Component {
     const columns = [
       {
         title: "公告标题",
-        dataIndex: "name",
-        key: "name"
+        dataIndex: "title",
+        key: "title"
       },
       {
         title: "发布时间",
-        dataIndex: "createdAt",
-        key: "createdAt"
+        dataIndex: "addTime",
+        key: "addTime"
       }
     ];
 

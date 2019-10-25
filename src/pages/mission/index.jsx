@@ -52,7 +52,7 @@ class Mission extends Component {
 
     return (
       <Fragment>
-        <Search />
+        <Search option1={"教师姓名"} option2={"课程名"} />
         <Table
           className="components-table-demo-nested"
           pagination={false}
