@@ -18,15 +18,8 @@ class Mission extends Component {
         { title: "发布时间", dataIndex: "createdAt", key: "createdAt" }
       ];
 
-      const data = [];
-      for (let i = 0; i < 3; ++i) {
-        data.push({
-          key: i,
-          createdAt: "2014-12-24",
-          mission: "实验一:线性表",
-          afflix: "实验报告内页"
-        });
-      }
+      const data = [...this.props.detailMission];
+
       return (
         <Table
           columns={columns}
@@ -50,6 +43,11 @@ class Mission extends Component {
 
     const data = [...this.props.mission];
 
+    const onExpand = (expanded, record) => {
+      console.log(record);
+      this.props.handleDetailMission(record.id);
+    };
+
     return (
       <Fragment>
         <Search option1={"教师姓名"} option2={"课程名"} />
@@ -60,6 +58,7 @@ class Mission extends Component {
           columns={columns}
           expandedRowRender={expandedRowRender} //子组件
           dataSource={data}
+          onExpand={onExpand}
         />
       </Fragment>
     );
@@ -68,7 +67,8 @@ class Mission extends Component {
 
 const mapStateToProps = state => {
   return {
-    mission: state.mission.get("result")
+    mission: state.mission.get("result"),
+    detailMission: state.mission.get("detailMission")
   };
 };
 
@@ -76,6 +76,9 @@ const mapDispatchToProps = dispatch => {
   return {
     handleMission() {
       dispatch(actionCreators.getMissionApi());
+    },
+    handleDetailMission(id) {
+      dispatch(actionCreators.getDetailMissionApi(id));
     }
   };
 };

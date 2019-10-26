@@ -1,14 +1,20 @@
 import axios from "axios";
-import { GET_MISSION } from "./actionTypes";
+import { GET_MISSION, GET_DETAIL_MISSON } from "./actionTypes";
 
 const getMission = (result) => ({
     type: GET_MISSION,
     result
 });
 
+const getDetailMission = (result) => ({
+
+    type: GET_DETAIL_MISSON,
+    result
+});
+
 export const getMissionApi = () => {
     return dispatch => {
-        console.log('调用接口')
+
         axios
             .get(`/api/mission.json`)
             .then(res => {
@@ -21,3 +27,23 @@ export const getMissionApi = () => {
             });
     };
 };
+
+export const getDetailMissionApi = (id) => {
+
+    return dispatch => {
+
+        axios
+            .get(`/api/detailMission.json?id = ${id}`)
+            .then(res => {
+                const result = res.data;
+                console.log(result)
+
+                dispatch(getDetailMission(result));
+
+            })
+            .catch(() => {
+                console.log('error')
+            });
+    };
+
+}

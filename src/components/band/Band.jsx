@@ -34,6 +34,7 @@ class Band extends Component {
             pagination={false}
             size="small"
             style={{ width: 450 }}
+            rowKey="id"
           />
         </div>
 
