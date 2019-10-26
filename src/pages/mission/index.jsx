@@ -1,14 +1,14 @@
 import React, { Component, Fragment } from "react";
 import { Table } from "antd";
-import Search from "../../components/Search";
+import Search from "../../components/Search/Search";
 import "./table.less";
 import { connect } from "react-redux";
 import { actionCreators } from "./store"; //store 里有出口文件 已经导出
 
 class Mission extends Component {
-  componentDidMount() {
-    this.props.handleMission();
-  }
+  // componentDidMount() {
+  //   this.props.handleMission();
+  // }
 
   render() {
     const expandedRowRender = () => {
@@ -44,13 +44,16 @@ class Mission extends Component {
     const data = [...this.props.mission];
 
     const onExpand = (expanded, record) => {
-      console.log(record);
       this.props.handleDetailMission(record.id);
     };
 
     return (
       <Fragment>
-        <Search option1={"教师姓名"} option2={"课程名"} />
+        <Search
+          option1={"教师姓名"}
+          option2={"课程名"}
+          api={" http://localhost:3000/api/mission.json"}
+        />
         <Table
           className="components-table-demo-nested"
           pagination={false}

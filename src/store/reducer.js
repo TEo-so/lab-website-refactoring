@@ -6,6 +6,7 @@ import { reducer as missionReducer } from "../pages/mission/store"
 import { reducer as resourceReducer } from '../pages/resource/store'
 import { reducer as softwareReducer } from '../pages/software/store'
 import { reducer as AdminReducer } from "../components/Admin/store"
+import { reducer as SearchReducer } from "../components/Search/store"
 
 
 const reducer = combineReducers({
@@ -14,7 +15,8 @@ const reducer = combineReducers({
     mission: missionReducer,
     software: softwareReducer,
     resource: resourceReducer,
-    admin: AdminReducer
+    admin: AdminReducer,
+    search: SearchReducer
 
 });
 export default reducer;

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import Search from "../../components/Search";
+import Search from "../../components/Search/Search";
 import { Table } from "antd";
 import { connect } from "react-redux";
 import { actionCreators } from "./store"; //store 里有出口文件 已经导出
@@ -42,7 +42,11 @@ class Resource extends Component {
 
     return (
       <Fragment>
-        <Search option1={"资料名称"} option2={"上传人"} />
+        <Search
+          option1={"资料名称"}
+          option2={"上传人"}
+          api={" http://localhost:3000/api/resource.json"}
+        />
         <Table
           pagination={false}
           size="small"

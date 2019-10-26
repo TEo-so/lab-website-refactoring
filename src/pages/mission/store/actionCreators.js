@@ -1,7 +1,7 @@
 import axios from "axios";
 import { GET_MISSION, GET_DETAIL_MISSON } from "./actionTypes";
 
-const getMission = (result) => ({
+export const getMission = (result) => ({
     type: GET_MISSION,
     result
 });
@@ -36,8 +36,6 @@ export const getDetailMissionApi = (id) => {
             .get(`/api/detailMission.json?id = ${id}`)
             .then(res => {
                 const result = res.data;
-                console.log(result)
-
                 dispatch(getDetailMission(result));
 
             })

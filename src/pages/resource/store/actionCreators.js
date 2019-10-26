@@ -1,7 +1,7 @@
 import axios from "axios";
 import { GET_RESOURCE } from "./actionTypes";
 
-const getResource = (result) => ({
+export const getResource = (result) => ({
     type: GET_RESOURCE,
     result
 });
