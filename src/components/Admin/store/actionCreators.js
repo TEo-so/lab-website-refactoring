@@ -53,7 +53,7 @@ export const getLoginOutApi = () => {
 
 export const getRegisterApi = (values) => {
     return dispatch => {
-        console.log(values)
+
 
         axios
             .get(`/api/register.json`)

@@ -8,6 +8,7 @@ import { actionCreators } from "./store"; //store 里有出口文件 已经导�
 class Band extends Component {
   componentDidMount() {
     this.props.handleBand();
+    console.log(this.props.history);
   }
 
   render() {

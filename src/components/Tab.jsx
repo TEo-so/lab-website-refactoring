@@ -17,33 +17,27 @@ export const ContentWrapper = styled.div`
 
 const Tab = () => {
   let { path, url } = useRouteMatch();
-
-  // const { TabPane } = Tabs;
+  console.log(useRouteMatch());
 
   return (
     <div>
-      {/* <Tabs type="card">
-        <TabPane tab="实验室首页" key="1">
-         
-        </TabPane>
-        <TabPane tab="上机任务" key="2">
-         
-        </TabPane>
-        <TabPane tab="资料下载" key="3">
-         
-        </TabPane>
-        <TabPane tab="软件下载" key="4">
-        
-        </TabPane>
-      </Tabs> */}
-
       <Menu mode="horizontal" className="menu">
         <Menu.Item key="home" className="tab">
           <Link to="/home"> 实验室首页</Link>
         </Menu.Item>
 
         <Menu.Item key="mission" className="tab">
-          <Link to={`${url}/mission`}>上机任务 </Link>
+          {/* <Link to={`${url}/mission`}>上机任务 </Link> */}
+          <Link
+            to={{
+              pathname: `${url}/mission`,
+              search: "?sort=test",
+              hash: "#test",
+              state: { test: 1 }
+            }}
+          >
+            上级任务
+          </Link>
         </Menu.Item>
 
         <Menu.Item key="resource" className="tab">

@@ -8,7 +8,7 @@ export const getSoftware = (result) => ({
 
 export const getSoftwareApi = () => {
     return dispatch => {
-        console.log('调用接口')
+
         axios
             .get(`/api/software.json`)
             .then(res => {

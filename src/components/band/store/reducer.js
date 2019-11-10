@@ -10,9 +10,9 @@ export default (state = defaultState, action) => {
 
     if (action.type === GET_BAND) {
 
-        return state.merge({
-            result: action.result
-        });
+        return state.set(
+            'result', action.result
+        );
     }
 
     return state;

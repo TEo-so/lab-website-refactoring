@@ -7,8 +7,8 @@ import { GET_LOGIN, GET_LOGIN_OUT, GET_REGISTER } from "./actionTypes";
 // 需要的字段 用户名 身份 登录状态 
 const defaultState = fromJS({
     username: null,
-    type: "visitor",
-    isLogin: false,
+    type: "teacher",
+    isLogin: true,
 
 });
 

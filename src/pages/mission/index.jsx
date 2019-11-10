@@ -1,68 +1,70 @@
 import React, { Component, Fragment } from "react";
-import { Table } from "antd";
+import { Tabs } from "antd";
 import Search from "../../components/Search/Search";
+import VisitorMission from "../../components/VisitorMission/index";
+import StudentMission from "../../components/StudentMission/index";
+import TeacherMission from "../../components/TeacherMission/index.jsx";
+import TeacherCourse from "../../components/TeacherCourse/index.jsx";
 import "./table.less";
 import { connect } from "react-redux";
-import { actionCreators } from "./store"; //store 里有出口文件 已经导出
 
 class Mission extends Component {
-  // componentDidMount() {
-  //   this.props.handleMission();
-  // }
+  componentDidMount() {
+    console.log(this.props.history);
+  }
+
+  //  动态加载组件
 
   render() {
-    const expandedRowRender = () => {
-      const columns = [
-        { title: "实验任务", dataIndex: "mission", key: "mission" },
-        { title: "实验任务附件", dataIndex: "afflix", key: "afflix" },
-        { title: "发布时间", dataIndex: "createdAt", key: "createdAt" }
-      ];
+    const { TabPane } = Tabs;
 
-      const data = [...this.props.detailMission];
-
-      return (
-        <Table
-          columns={columns}
-          dataSource={data}
-          pagination={false}
-          size="small"
-        />
-      );
-    };
-
-    //子菜单组件
-
-    const columns = [
-      { title: "实验课程", dataIndex: "name", key: "name" },
-      { title: "教学班编号", dataIndex: "number", key: "number" },
-      { title: "教学班备注", dataIndex: "comment", key: "comment" },
-      { title: "学期", dataIndex: "semester", key: "semester" },
-      { title: "课程教师", dataIndex: "teacher", key: "teacher" },
-      { title: "发布时间", dataIndex: "createdAt", key: "createdAt" }
-    ];
-
-    const data = [...this.props.mission];
-
-    const onExpand = (expanded, record) => {
-      this.props.handleDetailMission(record.id);
+    const GetMission = () => {
+      if (this.props.isLogin) {
+        return <VisitorMission></VisitorMission>;
+      } else if (!this.props.isLogin) {
+        if (this.props.type === "student") {
+          return (
+            <Tabs defaultActiveKey="1">
+              <TabPane tab="我的任务" key="1">
+                <StudentMission></StudentMission>
+              </TabPane>
+              <TabPane tab="所有任务" key="2">
+                <Search
+                  option1={"教师姓名"}
+                  option2={"课程名"}
+                  api={" http://localhost:3000/api/mission.json"}
+                />
+                {/* 所有任务，学生可添加 */}
+                <VisitorMission add={"实验处理"}></VisitorMission>
+              </TabPane>
+            </Tabs>
+          );
+        } else if (this.props.type === "teacher") {
+          return (
+            <Tabs defaultActiveKey="1">
+              <TabPane tab="我的任务" key="1">
+                <TeacherMission></TeacherMission>
+              </TabPane>
+              <TabPane tab="实验课程" key="2">
+                <TeacherCourse></TeacherCourse>
+              </TabPane>
+              <TabPane tab="所有任务" key="3">
+                <Search
+                  option1={"教师姓名"}
+                  option2={"课程名"}
+                  api={" http://localhost:3000/api/mission.json"}
+                />
+                <VisitorMission></VisitorMission>
+              </TabPane>
+            </Tabs>
+          );
+        }
+      }
     };
 
     return (
       <Fragment>
-        <Search
-          option1={"教师姓名"}
-          option2={"课程名"}
-          api={" http://localhost:3000/api/mission.json"}
-        />
-        <Table
-          className="components-table-demo-nested"
-          pagination={false}
-          size="small"
-          columns={columns}
-          expandedRowRender={expandedRowRender} //子组件
-          dataSource={data}
-          onExpand={onExpand}
-        />
+        <GetMission></GetMission>
       </Fragment>
     );
   }
@@ -70,20 +72,13 @@ class Mission extends Component {
 
 const mapStateToProps = state => {
   return {
-    mission: state.mission.get("result"),
-    detailMission: state.mission.get("detailMission")
+    isLogin: state.mission.get("isLogin"),
+    type: state.admin.get("type")
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    handleMission() {
-      dispatch(actionCreators.getMissionApi());
-    },
-    handleDetailMission(id) {
-      dispatch(actionCreators.getDetailMissionApi(id));
-    }
-  };
+  return {};
 };
 
 export default connect(
