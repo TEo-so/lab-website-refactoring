@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import "../style/band.less";
-import "../style/carousel.less";
+import "./band.less";
+import "./carousel.less";
 import { Table, Carousel } from "antd";
 import { connect } from "react-redux";
 import * as actionCreators from "../../actionCreators/band"; //store 里有出口文件 已经导出

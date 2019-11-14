@@ -24,6 +24,7 @@ export default (state = defaultState, action) => {
 
         });
     }
+
     else if (action.type === GET_LOGIN_OUT) {
         return state.merge({
             isLogin: false,
@@ -36,8 +37,6 @@ export default (state = defaultState, action) => {
         alert("注册提交")
         return state.merge({
             isLogin: false,
-
-
         });
 
     }

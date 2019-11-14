@@ -4,7 +4,7 @@ import store from "../../store";
 import { HomeWrapper, HeaderWrapper } from "./style";
 import Admin from "../../components/Admin/Admin";
 import SuperAdmin from "../SuperAdmin/index";
-import Tab from "../../components/Tab";
+import Tab from "../../components/Tab/Tab";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -15,7 +15,7 @@ class Home extends Component {
         <Router>
           <HomeWrapper className="HomeWrapper">
             <HeaderWrapper>
-              <Admin className="Admin" />
+              <Admin className="admin" />
             </HeaderWrapper>
 
             <Switch>

@@ -4,7 +4,7 @@ import head from '../../statics/images/head.gif'
 
 
 export const HomeWrapper = styled.div`
-  width:700px;
+  width:900px;
   margin: 0 auto;
 
  

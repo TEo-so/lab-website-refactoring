@@ -1,12 +1,12 @@
 import React from "react";
 import { Menu } from "antd";
-import "./style/menuOverwrite.less";
+import "./menuOverwrite.less";
 import styled from "styled-components";
 
-import Band from "./band/Band";
-import Mission from "../pages/mission/index";
-import Software from "../pages/software/index";
-import Resource from "../pages/resource/index";
+import Band from "../band/Band";
+import Mission from "../../pages/mission/index";
+import Software from "../../pages/software/index";
+import Resource from "../../pages/resource/index";
 
 import { Link, Switch, Route, useRouteMatch } from "react-router-dom";
 

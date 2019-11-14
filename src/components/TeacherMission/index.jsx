@@ -4,7 +4,7 @@ import { Table, Button, Divider, Popconfirm, Modal, Input } from "antd";
 import { connect } from "react-redux";
 import * as actionCreators from "../../actionCreators/teaMission";
 import CheckStuWork from "../CheckStuWork/index";
-import "../style/input.less";
+import "./input.less";
 
 import { withRouter } from "react-router-dom";
 

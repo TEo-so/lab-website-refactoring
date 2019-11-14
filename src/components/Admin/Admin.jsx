@@ -7,9 +7,9 @@ import * as actionCreators from "../../actionCreators/admin"; //store 里有出�
 
 const Wrapper = styled.div`
   display: flex;
-  position: absolute;
+  position: relative;
   top: 70px;
-  left: 470px;
+  left: 500px;
   div {
     margin: 0 5px;
     font-size: 12px;
@@ -17,9 +17,9 @@ const Wrapper = styled.div`
 `;
 const LoginWrapper = styled.div`
   display: flex;
-  position: absolute;
+  position: relative;
   top: 82px;
-  left: 630px;
+  left: 650px;
   div {
     margin: 0 5px;
     font-size: 12px;
@@ -241,7 +241,7 @@ class Admin extends React.Component {
       );
     } else {
       return (
-        <LoginWrapper>
+        <LoginWrapper className="loginWrapper">
           <div>您好：{this.props.usename}</div>
           <div>身份：{this.props.type}</div>
           <div onClick={this.showLoginOutModal}>
