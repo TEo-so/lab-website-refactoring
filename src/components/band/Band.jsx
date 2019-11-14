@@ -3,7 +3,7 @@ import "../style/band.less";
 import "../style/carousel.less";
 import { Table, Carousel } from "antd";
 import { connect } from "react-redux";
-import { actionCreators } from "./store"; //store 里有出口文件 已经导出
+import * as actionCreators from "../../actionCreators/band"; //store 里有出口文件 已经导出
 
 class Band extends Component {
   componentDidMount() {

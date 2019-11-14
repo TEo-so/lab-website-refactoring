@@ -1,15 +1,15 @@
 // 手册太多不利于查找 ，因此把手册分成几个小手册
 
 import { combineReducers } from "redux";
-import { reducer as bandReducer } from "../components/band/store";
-import { reducer as missionReducer } from "../components/VisitorMission/store"
-import { reducer as resourceReducer } from '../pages/resource/store'
-import { reducer as softwareReducer } from '../pages/software/store'
-import { reducer as AdminReducer } from "../components/Admin/store"
-import { reducer as SearchReducer } from "../components/Search/store"
-import { reducer as StudentReducer } from "../components/StudentMission/store"
-import { reducer as TeacherReducer } from "../components/TeacherMission/store"
-import { reducer as CourseReducer } from "../components/TeacherCourse/store"
+import bandReducer from "../reducers/band";
+import missionReducer from "../reducers/vistorMission"
+import resourceReducer from '../reducers/resourse'
+import softwareReducer from '../reducers/software'
+import AdminReducer from "../reducers/admin"
+import SearchReducer from "../reducers/search"
+import StudentReducer from "../reducers/stuMission"
+import TeacherReducer from "../reducers/teaMission"
+import CourseReducer from "../reducers/teaCourse"
 
 
 const reducer = combineReducers({

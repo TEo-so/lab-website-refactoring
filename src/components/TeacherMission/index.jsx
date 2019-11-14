@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 import { Table, Button, Divider, Popconfirm, Modal, Input } from "antd";
 import { connect } from "react-redux";
-import { actionCreators } from "./store";
+import * as actionCreators from "../../actionCreators/teaMission";
 import CheckStuWork from "../CheckStuWork/index";
 import "../style/input.less";
 

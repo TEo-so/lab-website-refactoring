@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import Search from "../../components/Search/Search";
 import { Table } from "antd";
 import { connect } from "react-redux";
-import { actionCreators } from "./store"; //store 里有出口文件 已经导出
+import * as actionCreators from "../../actionCreators/resourse"; //store 里有出口文件 已经导出
 
 class Resource extends Component {
   componentDidMount() {

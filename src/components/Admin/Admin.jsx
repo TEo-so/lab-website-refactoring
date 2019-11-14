@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { Modal, Form, Input, Col, Row } from "antd";
 import { connect } from "react-redux";
-import { actionCreators } from "./store"; //store 里有出口文件 已经导出
+import * as actionCreators from "../../actionCreators/admin"; //store 里有出口文件 已经导出
 
 const Wrapper = styled.div`
   display: flex;

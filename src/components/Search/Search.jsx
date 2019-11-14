@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Input, Select } from "antd";
 import { connect } from "react-redux";
-import { actionCreators } from "./store"; //store 里有出口文件 已经导出
+import * as actionCreators from "../../actionCreators/search"; //store 里有出口文件 已经导出
 
 const { Option } = Select;
 const { Search } = Input;

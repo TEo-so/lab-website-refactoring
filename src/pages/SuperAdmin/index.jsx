@@ -1,87 +1,33 @@
 import React, { Component } from "react";
-import { Layout, Menu, Icon, Table } from "antd";
+import { Layout, Menu, Icon } from "antd";
 import "./style.less";
-import { ActionWrapper, TableWrapper } from "./style.js";
-import { AddButton, DeleteButton } from "../../components/Buttons";
+
+import GetTable from "./GetTable";
 const { Header, Sider, Content } = Layout;
 
 class SuperAdmin extends Component {
-  state = {
-    collapsed: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = { info: 1 };
+  }
 
-  toggle = () => {
-    this.setState({
-      collapsed: !this.state.collapsed
-    });
+  clickMenuItem = ({ item, key, keyPath, domEvent }) => {
+    this.setState({ info: key });
   };
 
   render() {
     const { SubMenu } = Menu;
-    const columns = [
-      {
-        title: "Name",
-        dataIndex: "name"
-      },
-      {
-        title: "Age",
-        dataIndex: "age"
-      },
-      {
-        title: "Address",
-        dataIndex: "address"
-      }
-    ];
-    const data = [
-      {
-        key: "1",
-        name: "John Brown",
-        age: 32,
-        address: "New York No. 1 Lake Park"
-      },
-      {
-        key: "2",
-        name: "Jim Green",
-        age: 42,
-        address: "London No. 1 Lake Park"
-      },
-      {
-        key: "3",
-        name: "Joe Black",
-        age: 32,
-        address: "Sidney No. 1 Lake Park"
-      },
-      {
-        key: "4",
-        name: "Disabled User",
-        age: 99,
-        address: "Sidney No. 1 Lake Park"
-      }
-    ];
-    const rowSelection = {
-      onChange: (selectedRowKeys, selectedRows) => {
-        console.log(
-          `selectedRowKeys: ${selectedRowKeys}`,
-          "selectedRows: ",
-          selectedRows
-        );
-      }
-    };
 
     return (
       <Layout>
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={this.state.collapsed}
-          width="200"
-        >
+        <Sider width="200">
           <div className="logo" />
           <Menu
             className="Menu"
             mode="inline"
             defaultSelectedKeys={["1"]}
             style={{ height: "100%", borderRight: 0 }}
+            onClick={this.clickMenuItem}
           >
             <SubMenu
               style={{ padding: 0, left: -20 }}
@@ -154,26 +100,11 @@ class SuperAdmin extends Component {
           </Menu>
         </Sider>
         <Layout>
-          <Header style={{ background: "#fff", padding: 0, height: 40 }}>
-            <Icon
-              className="trigger"
-              type={this.state.collapsed ? "menu-unfold" : "menu-fold"}
-              onClick={this.toggle}
-            />
-          </Header>
+          <Header
+            style={{ background: "#fff", padding: 0, height: 40 }}
+          ></Header>
           <Content>
-            <ActionWrapper>
-              <AddButton />
-              <DeleteButton />
-            </ActionWrapper>
-            <TableWrapper>
-              <Table
-                rowSelection={rowSelection}
-                columns={columns}
-                dataSource={data}
-                pagination={false}
-              />
-            </TableWrapper>
+            <GetTable info={this.state.info}></GetTable>
           </Content>
         </Layout>
       </Layout>

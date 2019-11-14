@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Table, Popconfirm, Divider, Button, Modal } from "antd";
 import { connect } from "react-redux";
-import { actionCreators } from "./store"; //store 里有出口文件 已经导出
+import * as actionCreators from "../../actionCreators/stuMission"; //store 里有出口文件 已经导出
 import WorkPop from "../../components/WorkPop/index";
 
 class StudentMission extends Component {
