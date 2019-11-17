@@ -17,7 +17,6 @@ export const ContentWrapper = styled.div`
 
 const Tab = () => {
   let { path, url } = useRouteMatch();
-  console.log(useRouteMatch());
 
   return (
     <div>
@@ -27,17 +26,7 @@ const Tab = () => {
         </Menu.Item>
 
         <Menu.Item key="mission" className="tab">
-          {/* <Link to={`${url}/mission`}>上机任务 </Link> */}
-          <Link
-            to={{
-              pathname: `${url}/mission`,
-              search: "?sort=test",
-              hash: "#test",
-              state: { test: 1 }
-            }}
-          >
-            上级任务
-          </Link>
+          <Link to={`${url}/mission`}>上机任务 </Link>
         </Menu.Item>
 
         <Menu.Item key="resource" className="tab">

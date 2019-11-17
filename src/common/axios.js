@@ -3,6 +3,7 @@ import axios from 'axios'
 //  创建一个实例 
 const instance = axios.create({
     baseURL: '/api',
+    // baseURL: 'http://192.168.43.211:8080'
     // timeout: 1000,  请求延时时间  
     // headers: {}     请求头规定
 });

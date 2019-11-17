@@ -1,15 +1,53 @@
 import React, { Component } from "react";
 import "./band.less";
 import "./carousel.less";
-import { Table, Carousel } from "antd";
+import { Table, Carousel, Pagination, Modal } from "antd";
 import { connect } from "react-redux";
-import * as actionCreators from "../../actionCreators/band"; //store 里有出口文件 已经导出
+import * as actionCreators from "../../actionCreators/band";
 
 class Band extends Component {
   componentDidMount() {
-    this.props.handleBand();
-    console.log(this.props.history);
+    this.props.handleBand(this.state.currentPage); //组件挂载好之后获取公告内容
   }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.currentPage !== nextState.currentPage) {
+      this.props.handleBand(nextState.currentPage);
+    }
+    return true;
+  }
+
+  state = {
+    visible: false,
+    content: null,
+    title: null,
+    currentPage: 1
+  };
+
+  showModal = record => {
+    this.setState({
+      visible: true,
+      content: record.content,
+      title: record.title
+    });
+  };
+
+  handleOk = e => {
+    this.setState({
+      visible: false
+    });
+  };
+
+  handleCancel = e => {
+    console.log(e);
+    this.setState({
+      visible: false
+    });
+  };
+
+  onChange = pageNumber => {
+    this.setState({ currentPage: pageNumber });
+  };
 
   render() {
     const columns = [
@@ -25,38 +63,64 @@ class Band extends Component {
       }
     ];
 
-    const data = [...this.props.result];
-    return (
-      <div className="bandWrapper">
-        <div className="contendLeft">
-          <Table
-            columns={columns}
-            dataSource={data}
-            pagination={false}
-            size="small"
-            style={{ width: 450 }}
-            rowKey="id"
-          />
-        </div>
+    const data = this.props.result.items;
+    const total = this.props.result.total;
 
-        <Carousel autoplay dots className="carouselWrapper">
-          <div>
-            <div className="first"></div>
+    return (
+      <>
+        <div className="bandWrapper">
+          <div className="contendLeft">
+            <Table
+              columns={columns}
+              dataSource={data}
+              pagination={false}
+              size="small"
+              style={{ width: 450 }}
+              rowKey="id"
+              onRow={record => {
+                return {
+                  onClick: event => {
+                    this.showModal(record);
+                  }
+                };
+              }}
+            />
           </div>
-          <div>
-            <div className="second"></div>
-          </div>
-          <div>
-            <div className="third"></div>
-          </div>
-          <div>
-            <div className="fourth"></div>
-          </div>
-          <div>
-            <div className="fifth"></div>
-          </div>
-        </Carousel>
-      </div>
+          {/* 轮播图 */}
+          <Carousel autoplay dots className="carouselWrapper">
+            <div>
+              <div className="first"></div>
+            </div>
+            <div>
+              <div className="second"></div>
+            </div>
+            <div>
+              <div className="third"></div>
+            </div>
+            <div>
+              <div className="fourth"></div>
+            </div>
+            <div>
+              <div className="fifth"></div>
+            </div>
+          </Carousel>
+        </div>
+        <Modal
+          title={this.state.title}
+          visible={this.state.visible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <p>{this.state.content}</p>
+        </Modal>
+        <Pagination
+          showQuickJumper
+          defaultCurrent={1}
+          total={total}
+          onChange={this.onChange}
+          size="small"
+        />
+      </>
     );
   }
 }
@@ -71,8 +135,9 @@ const mapStateToProps = state => {
 // 输出逻辑，即将用户对 UI 组件的操作映射成 Action。
 const mapDispatchToProps = dispatch => {
   return {
-    handleBand() {
-      dispatch(actionCreators.getBandApi());
+    //获取公告内容
+    handleBand(page) {
+      dispatch(actionCreators.getBandApi(page));
     }
   };
 };

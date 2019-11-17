@@ -15,13 +15,8 @@ const getDetailMission = (result) => ({
     result
 });
 
-
-
-
-
-export const getMissionApi = () => {
+export const getMissionApi = (id) => {
     return dispatch => {
-
         API.getVisMission()
             .then(res => {
                 const result = res.data;

@@ -19,7 +19,7 @@ const getRegister = () => ({
 
 export const getLoginApi = (values) => {
     return dispatch => {
-        API.getLogin()
+        API.getLogin(values)
             .then(res => {
                 const result = res.data;
                 dispatch(getLogin(result));
@@ -36,10 +36,9 @@ export const getLoginOutApi = () => {
     return dispatch => {
 
         API.getLoginOut()
-            .then(() => {
-
-                dispatch(getLoginOut());
-
+            .then((res) => {
+                const result = res.result.error_code
+                dispatch(getLoginOut(result));
             })
             .catch(() => {
                 console.log('error')
@@ -50,14 +49,12 @@ export const getLoginOutApi = () => {
 
 export const getRegisterApi = (values) => {
     return dispatch => {
-        API.getRegister()
+        API.getRegister(values)
             .then(() => {
-
                 dispatch(getRegister());
-
             })
             .catch(() => {
-                console.log('error')
+                console.log('error')  //为什么抛出错误的原因不知道
             });
     };
 };

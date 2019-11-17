@@ -1,28 +1,37 @@
 
 
 export default {
+
+    // 获取公告内容
+    getBand: {
+        method: 'get',
+        url: `/band.json`
+        // url: '/queryAnnounce'  测试成功
+    },
+
     //登陆
     getLogin: {
         method: 'get',
         url: '/login.json'
+        // 测试失败
+        // method: 'post',
+        // url: '/login'
     },
     //登出
     getLoginOut: {
         method: 'get',
         url: '/loginOut.json'
+
     },
 
     //注册
     getRegister: {
         method: 'get',
         url: '/register.json'
+        // method: 'post',
+        // url: '/register'
     },
 
-    // 获取公告内容
-    getBand: {
-        method: 'get',
-        url: '/band.json'
-    },
 
     //获取学生的已选任务
     getStuMission: {
@@ -100,7 +109,5 @@ export default {
         method: 'get',
         url: '/software.json'
     }
-
-
-
 }
+

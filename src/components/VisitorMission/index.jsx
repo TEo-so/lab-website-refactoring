@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { Table, Popconfirm } from "antd";
 import { connect } from "react-redux";
+import Search from "../Search/Search";
 import * as actionCreators from "../../actionCreators/visMission"; //store 里有出口文件 已经导出
 
 class VisitorMission extends Component {
@@ -14,6 +15,14 @@ class VisitorMission extends Component {
 
   render() {
     // 不能共用同一个子表格
+    const onExpandTest = (expanded, record) => {
+      console.log("test");
+      this.props.handleDetailMission(record.id);
+    };
+
+    const onExpand = (expanded, record) => {
+      console.log("on");
+    };
 
     const expandedRowRenderTeacher = () => {
       const columns = [
@@ -57,21 +66,21 @@ class VisitorMission extends Component {
     const { Column } = Table;
 
     const data = [...this.props.mission];
-
-    const onExpand = (expanded, record) => {
-      this.props.handleDetailMission(record.id);
-    };
-
-    const GetTable = () => {
-      if (this.props.type === "student") {
-        return (
+    if (this.props.type === "teacher") {
+      return (
+        <Fragment>
+          <Search
+            option1={"教师姓名"}
+            option2={"课程名"}
+            api={" http://localhost:3000/api/mission.json"}
+          />
           <Table
             className="components-table-demo-nested"
             pagination={false}
             size="small"
             expandedRowRender={expandedRowRenderStu} //子组件
             dataSource={data}
-            onExpand={this.onExpand}
+            onExpand={onExpand}
           >
             <Column title="实验课程" dataIndex="name" key="name" />
             <Column title="教学班编号" dataIndex="number" key="number" />
@@ -95,16 +104,19 @@ class VisitorMission extends Component {
               }}
             />
           </Table>
-        );
-      } else {
-        return (
+        </Fragment>
+      );
+    } else {
+      return (
+        <>
+          <Search></Search>
           <Table
             className="components-table-demo-nested"
             pagination={false}
             size="small"
             expandedRowRender={expandedRowRenderTeacher} //子组件
             dataSource={data}
-            onExpand={this.onExpand}
+            onExpand={onExpandTest}
           >
             <Column title="实验课程" dataIndex="name" key="name" />
             <Column title="教学班编号" dataIndex="number" key="number" />
@@ -113,15 +125,9 @@ class VisitorMission extends Component {
             <Column title="课程教师" dataIndex="teacher" key="teacher" />
             <Column title="发布时间" dataIndex="createdAt" key="createdAt" />
           </Table>
-        );
-      }
-    };
-
-    return (
-      <Fragment>
-        <GetTable></GetTable>
-      </Fragment>
-    );
+        </>
+      );
+    }
   }
 }
 

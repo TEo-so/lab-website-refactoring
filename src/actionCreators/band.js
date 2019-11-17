@@ -8,11 +8,11 @@ const getBand = (result) => ({
 });
 
 
-export const getBandApi = () => {
+export const getBandApi = (page) => {
     return dispatch => {
-        API.getBand()
+        API.getBand(`?page = ${page}`)
             .then(res => {
-                const result = res.data.data.items;
+                const result = res.data.data;
                 dispatch(getBand(result));
 
             })

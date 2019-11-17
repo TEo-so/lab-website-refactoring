@@ -8,8 +8,8 @@ import * as actionCreators from "../../actionCreators/admin"; //store 里有出�
 const Wrapper = styled.div`
   display: flex;
   position: relative;
-  top: 70px;
-  left: 500px;
+  top: 83px;
+  left: 580px;
   div {
     margin: 0 5px;
     font-size: 12px;
@@ -26,6 +26,7 @@ const LoginWrapper = styled.div`
   }
 `;
 
+//登录弹出框的表单组件
 const LoginFormPop = Form.create({ name: "form_in_login" })(
   class extends React.Component {
     render() {
@@ -55,6 +56,7 @@ const LoginFormPop = Form.create({ name: "form_in_login" })(
   }
 );
 
+//注册弹出框的表单组件
 const RegisterFormPop = Form.create({ name: "form_in_register" })(
   class extends React.Component {
     render() {
@@ -74,12 +76,12 @@ const RegisterFormPop = Form.create({ name: "form_in_register" })(
             <Form layout="vertical">
               <Col span={12}>
                 <Form.Item label="学号">
-                  {getFieldDecorator("studentID")(<Input type="textarea" />)}
+                  {getFieldDecorator("userId")(<Input type="textarea" />)}
                 </Form.Item>
               </Col>
               <Col span={12}>
                 <Form.Item label="姓名">
-                  {getFieldDecorator("name")(<Input type="textarea" />)}
+                  {getFieldDecorator("userName")(<Input type="textarea" />)}
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -89,32 +91,32 @@ const RegisterFormPop = Form.create({ name: "form_in_register" })(
               </Col>
               <Col span={12}>
                 <Form.Item label="学院">
-                  {getFieldDecorator("college")(<Input type="textarea" />)}
+                  {getFieldDecorator("academy")(<Input type="textarea" />)}
                 </Form.Item>
               </Col>
               <Col span={12}>
                 <Form.Item label="专业">
-                  {getFieldDecorator("major")(<Input type="textarea" />)}
+                  {getFieldDecorator("discipline")(<Input type="textarea" />)}
                 </Form.Item>
               </Col>
               <Col span={12}>
                 <Form.Item label="班级">
-                  {getFieldDecorator("class")(<Input type="textarea" />)}
+                  {getFieldDecorator("cls")(<Input type="textarea" />)}
                 </Form.Item>
               </Col>
               <Col span={12}>
                 <Form.Item label="性别">
-                  {getFieldDecorator("sexual")(<Input type="textarea" />)}
+                  {getFieldDecorator("sex")(<Input type="textarea" />)}
                 </Form.Item>
               </Col>
               <Col span={12}>
                 <Form.Item label="教师">
-                  {getFieldDecorator("teacher")(<Input type="textarea" />)}
+                  {getFieldDecorator("teacherId")(<Input type="textarea" />)}
                 </Form.Item>
               </Col>
               <Col span={12}>
                 <Form.Item label="电话">
-                  {getFieldDecorator("tel")(<Input type="textarea" />)}
+                  {getFieldDecorator("phone")(<Input type="textarea" />)}
                 </Form.Item>
               </Col>
               <Col span={12}>
@@ -130,7 +132,6 @@ const RegisterFormPop = Form.create({ name: "form_in_register" })(
   }
 );
 
-//CollectionsPage
 class Admin extends React.Component {
   state = {
     loginVisible: false,
@@ -146,26 +147,17 @@ class Admin extends React.Component {
   };
 
   showLoginOutModal = () => {
-    console.log("退出登录");
-    this.setState({
-      loginOutVisible: true
-    });
+    this.setState({ loginOutVisible: true });
   };
 
   // 退出登录
-  handleOk = e => {
-    console.log(e);
-    this.setState({
-      loginOutVisible: false
-    });
-    this.props.handleLoginOut();
+  handleOk = () => {
+    this.setState({ loginOutVisible: false });
+    // this.props.handleLoginOut();
   };
 
-  handleCancel = e => {
-    console.log(e);
-    this.setState({
-      loginOutVisible: false
-    });
+  handleCancel = () => {
+    this.setState({ loginOutVisible: false });
   };
 
   handleLoginCancel = () => {
@@ -182,9 +174,11 @@ class Admin extends React.Component {
       if (err) {
         return;
       } else {
+        //登录 传表单数据给后端
         this.props.handleSubmitLogin(values);
+        console.log(values);
       }
-
+      //点击登录之后内容当然清空重置啊，然后隐藏
       form.resetFields();
       this.setState({ loginVisible: false });
     });
@@ -196,9 +190,10 @@ class Admin extends React.Component {
       if (err) {
         return;
       } else {
+        //注册信息返回给后端
         this.props.handleRegister(values);
+        console.log(values);
       }
-
       form.resetFields();
       this.setState({ registerVisible: false });
     });
@@ -228,7 +223,6 @@ class Admin extends React.Component {
           </div>
           <div>
             <div onClick={this.showRegisterModal}>注册</div>
-
             <RegisterFormPop
               wrappedComponentRef={this.saveRegisterFormRef}
               visible={this.state.registerVisible}
